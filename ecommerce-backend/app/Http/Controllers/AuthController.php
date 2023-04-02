@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -23,11 +24,21 @@ class AuthController extends Controller
         }
 
         return response()->json([
-           "token" => $user->createToken($request->email)->plainTextToken,
+            "token" => $user->createToken($request->email)->plainTextToken,
         ]);
     }
 
     public function register()
     {
+    }
+
+    public function logout()
+    {
+
+    }
+
+    public function user(Request $request)
+    {
+        return $request->user();
     }
 }
